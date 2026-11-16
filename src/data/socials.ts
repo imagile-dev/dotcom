@@ -17,7 +17,6 @@ export interface Social {
 
 export const socials: Social[] = [
   { label: 'LinkedIn', icon: 'simple-icons:linkedin', name: 'Imagile on LinkedIn', handle: 'Imagile', href: 'https://www.linkedin.com/company/imagile-dev', owner: 'company' },
-  { label: 'LinkedIn', icon: 'simple-icons:linkedin', name: 'Sunny on LinkedIn', handle: 'Sunny Kolattukudy', href: 'https://www.linkedin.com/in/sunnyjk', owner: 'person' },
   { label: 'X', icon: 'simple-icons:x', name: 'Sunny on X', handle: '@kolatts', href: 'https://x.com/kolatts', owner: 'person' },
   { label: 'YouTube', icon: 'simple-icons:youtube', name: 'Imagile on YouTube', handle: '@ImagileConsulting', href: 'https://www.youtube.com/@ImagileConsulting', owner: 'company' },
   { label: 'Instagram', icon: 'simple-icons:instagram', name: 'Sunny on Instagram', handle: '@sunnykolattukudy', href: 'https://www.instagram.com/sunnykolattukudy', owner: 'person' },

@@ -23,7 +23,7 @@ Don't add those back. Blog writing now lives in Notion (Content Calendar,
 Channel: Blog; archive of these posts in Marketing Workspace › Blog Archive).
 
 Social links come from `src/data/socials.ts`, in this order: LinkedIn
-(company), LinkedIn (Sunny), X, YouTube, Instagram, TikTok. Edit that list,
+(Imagile company page only), X, YouTube, Instagram, TikTok. Edit that list,
 not the pages that render it.
 
 ## Copy rules

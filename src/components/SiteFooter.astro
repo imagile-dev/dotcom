@@ -35,7 +35,7 @@ const year = new Date().getFullYear();
       <p class="eyebrow">Follow</p>
       <ul>
         {socials.map((s) => (
-          <li><a href={s.href} target="_blank" rel="noopener">{s.label === 'LinkedIn' ? `${s.owner === 'company' ? 'Imagile' : 'Sunny'} on LinkedIn` : s.label} ↗</a></li>
+          <li><a href={s.href} target="_blank" rel="noopener">{s.label} ↗</a></li>
         ))}
       </ul>
     </nav>
