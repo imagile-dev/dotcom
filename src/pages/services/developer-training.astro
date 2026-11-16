@@ -1,20 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import Hero from '../../components/Hero.astro';
 import Prose from '../../components/Prose.astro';
-import PostCard from '../../components/PostCard.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { readingTime } from '../../lib/reading-time';
-
-const RELEVANT_TAGS = ['developer-training', 'claude-code', 'mentorship', 'engineering'];
-
-const relatedPosts = (await getCollection('blog'))
-  .filter((p) => p.data.tags.some((t) => RELEVANT_TAGS.includes(t)))
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 3);
 
 const pricingRows = [
   { name: 'AI Transformation Strategy', detail: 'A focused session + written recommendation, credited toward what comes next', price: 'Flat fee, credited forward' },
@@ -140,27 +130,6 @@ const pricingRows = [
       </div>
     </section>
 
-    {relatedPosts.length > 0 && (
-      <section class="section section--tight related">
-        <div class="container">
-          <p class="eyebrow">Related reading</p>
-          <h2 class="related__title">More on this</h2>
-          <div class="related__grid">
-            {relatedPosts.map((post) => (
-              <PostCard
-                title={post.data.title}
-                description={post.data.description}
-                publishDate={post.data.publishDate}
-                tags={post.data.tags}
-                slug={post.id}
-                readingTime={readingTime(post.body ?? '')}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
-
     <CtaBand title="Bring this to your team." />
   </main>
   <SiteFooter />
@@ -201,18 +170,8 @@ const pricingRows = [
   .pricing__price { font-family: var(--font-mono); white-space: nowrap; color: var(--color-ink) !important; }
   .pricing__philosophy { color: var(--color-muted); max-width: 62ch; }
 
-  .related__title { font-size: var(--text-2xl); margin: 0.5rem 0 var(--space-md); }
-  .related__grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
-
   @media (min-width: 720px) {
     .who__grid { grid-template-columns: repeat(3, 1fr); }
     .walkaway__list { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  @media (min-width: 640px) {
-    .related__grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (min-width: 980px) {
-    .related__grid { grid-template-columns: 1fr 1fr 1fr; }
   }
 </style>
