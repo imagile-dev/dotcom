@@ -14,6 +14,18 @@ npm run build
 
 The dev server usually already runs on `localhost:4321` — attach rather than spawning a second one (`.claude/launch.json` has a url-only "dotcom" config).
 
+## Blog (hidden)
+
+The blog is retired from the site as of Nov 2026: `/blog`, its posts and
+`/rss.xml` still build and load at their URLs, but nothing links to them —
+no nav item, footer link, home or service-page post lists, or RSS `<link>`.
+Don't add those back. Blog writing now lives in Notion (Content Calendar,
+Channel: Blog; archive of these posts in Marketing Workspace › Blog Archive).
+
+Social links come from `src/data/socials.ts`, in this order: LinkedIn
+(company), LinkedIn (Sunny), X, YouTube, Instagram, TikTok. Edit that list,
+not the pages that render it.
+
 ## Copy rules
 
 **Pricing: no dollar figures in site copy. Anywhere.** No hourly rate, day rate,

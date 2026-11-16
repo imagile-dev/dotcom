@@ -1,15 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Hero from '../components/Hero.astro';
 import PathPicker from '../components/PathPicker.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import PostCard from '../components/PostCard.astro';
 import BuildCard from '../components/BuildCard.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { readingTime } from '../lib/reading-time';
 
 const services = [
   {
@@ -38,9 +35,6 @@ const services = [
   },
 ];
 
-const latestPosts = (await getCollection('blog'))
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 3);
 ---
 
 <Layout title="Imagile">
@@ -52,6 +46,7 @@ const latestPosts = (await getCollection('blog'))
       subtitle="Training for your team, automation that does real work, and custom software — all of it from the person who does the work, not a bench you never meet."
       primaryCta={{ href: '/contact', label: 'Get in touch' }}
       secondaryCta={{ href: '/work', label: 'See the work' }}
+      showSocials
     />
 
     <PathPicker />
@@ -153,28 +148,6 @@ const latestPosts = (await getCollection('blog'))
       </div>
     </section>
 
-    {latestPosts.length > 0 && (
-      <section class="section section--tight writing">
-        <div class="container">
-          <p class="eyebrow">Latest writing</p>
-          <h2 class="writing__title">From the blog</h2>
-          <div class="writing__grid">
-            {latestPosts.map((post) => (
-              <PostCard
-                title={post.data.title}
-                description={post.data.description}
-                publishDate={post.data.publishDate}
-                tags={post.data.tags}
-                slug={post.id}
-                readingTime={readingTime(post.body ?? '')}
-              />
-            ))}
-          </div>
-          <a href="/blog" class="btn btn--ghost btn--sm writing__more">All posts →</a>
-        </div>
-      </section>
-    )}
-
     <CtaBand
       title="The conversation costs an hour. Waiting is billed by the quarter."
       body="A short call now, or the same call a few releases from now — the only difference is what it costs to catch up."
@@ -193,10 +166,6 @@ const latestPosts = (await getCollection('blog'))
   .method__num { font-family: var(--font-mono); color: var(--color-muted); font-size: var(--text-sm); flex: none; padding-top: 0.2em; }
   .method__list h3 { font-size: var(--text-lg); margin-bottom: 0.4rem; }
   .method__list p { color: var(--color-muted); max-width: 42ch; }
-
-  .writing__title { font-size: var(--text-2xl); margin: 0.5rem 0 var(--space-md); }
-  .writing__grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); margin-bottom: var(--space-md); }
-  .writing__more { display: inline-flex; }
 
   .open-work__title { font-size: var(--text-2xl); margin: 0.5rem 0 0.6rem; max-width: 26ch; }
   .open-work__note { color: var(--color-muted); max-width: 54ch; margin-bottom: var(--space-lg); }
@@ -219,13 +188,6 @@ const latestPosts = (await getCollection('blog'))
   @media (min-width: 720px) {
     .services__grid { grid-template-columns: repeat(2, 1fr); }
     .method__list { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  @media (min-width: 640px) {
-    .writing__grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (min-width: 980px) {
-    .writing__grid { grid-template-columns: 1fr 1fr 1fr; }
   }
 
   @media (min-width: 760px) {
